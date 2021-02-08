@@ -2,6 +2,8 @@
 package sportRadar_demo;
 
 import java.util.Map;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,6 +70,35 @@ public class FootballBoard implements Board {
 	public Map<String, Match> getSummary() {
 		
 		return null;
+	}
+	
+	
+	// ###########################
+	// Helper methods 
+	
+	protected Optional<Match> findMatchByTeamsPlaying(Board board, String homeTeam, String awayTeam) {
+
+		Map<String, Match> summary = board.getSummary();
+		
+		logger.debug("Searching match with coordinates:\n home team:{} | away team {}", homeTeam, homeTeam);
+		Optional<Match> match = summary.values()
+										.stream()
+										.filter(actMatch -> (actMatch.getHomeTeam() == homeTeam) && (actMatch.getAwayTeam() == awayTeam))
+										.findFirst();
+		
+		if (match.isPresent()) logger.debug("Match found:\n {}", match.get().toString());
+		
+		return match;
+
+	}
+	
+	
+	protected Optional<Match> findMatchById (Board board, String Id){
+		
+		var matchesList = board.getSummary();
+		
+		return Optional.ofNullable(matchesList.get(Id));
+		
 	}
 	
 	
