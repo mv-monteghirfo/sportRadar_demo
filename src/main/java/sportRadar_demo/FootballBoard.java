@@ -1,6 +1,7 @@
 
 package sportRadar_demo;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ public class FootballBoard implements Board {
 	
 	private static Logger logger = LoggerFactory.getLogger(FootballBoard.class);
 	
+	private final Map<String, Match> currentMatches = new HashMap<String, Match>();
+	
 
 // CLASS METHODS ------------------------------------------------------------------------
 	
@@ -30,7 +33,12 @@ public class FootballBoard implements Board {
 	@Override
 	public String matchStart(String homeTeam, String awayTeam) {
 		
-		return null;
+		Match newMatch = new Match(homeTeam, awayTeam);
+		String newId = newMatch.getId();
+		
+		currentMatches.put(newId, newMatch);
+		
+		return newId;
 	}
 	
 	
@@ -41,7 +49,7 @@ public class FootballBoard implements Board {
 	 */
 	@Override
 	public void matchFinish(String Id) {
-		
+		currentMatches.remove(Id);
 	}
 	
 	
@@ -57,7 +65,11 @@ public class FootballBoard implements Board {
 	@Override
 	public String updateMatch(String homeTeam, String awayTeam, int homeTeamScore, int awayTeamScore) {
 		
-		return null;
+		var matchToUpdate = findMatchByTeamsPlaying(this, homeTeam, awayTeam);
+		matchToUpdate.get().setHomeTeamScore(homeTeamScore);
+		matchToUpdate.get().setAwayTeamScore(awayTeamScore);
+		
+		return matchToUpdate.get().getId();
 	}
 	
 	
@@ -69,7 +81,9 @@ public class FootballBoard implements Board {
 	@Override
 	public Map<String, Match> getSummary() {
 		
-		return null;
+		if (this.currentMatches.isEmpty()) return new HashMap<String, Match>();
+		// returns a copy of the matches in the system, keeping the encapsulation of the collection 
+		else return Map.copyOf(this.currentMatches);
 	}
 	
 	
