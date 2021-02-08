@@ -1,26 +1,16 @@
-
+/**
+ * 
+ */
 package sportRadar_demo;
 
 import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Manuel
  *
  */
-public class Board {
-	
-// CLASS ATTRIBUTES ---------------------------------------------------------------------
-	
-	private static Logger logger = LoggerFactory.getLogger(Board.class);
-	
-	
-// CLASS CONSTRUCTORS -------------------------------------------------------------------
+public interface Board {
 
-// CLASS METHODS ------------------------------------------------------------------------
-	
 	/**
 	 * Register that a match starts in the system
 	 * 
@@ -28,22 +18,15 @@ public class Board {
 	 * @param awayTeam
 	 * @return the ID of the match that started
 	 */
-	public String matchStart(String homeTeam, String awayTeam) {
-		
-		return null;
-	}
-	
-	
+	String matchStart(String homeTeam, String awayTeam);
+
 	/**
 	 * Unregister a match in the system and it´s found by its Id
 	 * 
 	 * @param Id
 	 */
-	public void matchFinish(String Id) {
-		
-	}
-	
-	
+	void matchFinish(String Id);
+
 	/**
 	 * Updates the state of a match in the system providing the score info
 	 * 
@@ -53,19 +36,13 @@ public class Board {
 	 * @param awayTeamScore to be updated
 	 * @return the ID of the updated Match
 	 */
-	public String updateMatch(String homeTeam, String awayTeam, int homeTeamScore, int awayTeamScore) {
-		
-		return null;
-	}
-	
-	
+	String updateMatch(String homeTeam, String awayTeam, int homeTeamScore, int awayTeamScore);
+
 	/**
-	 * Returns the current state of the Matchs in the system
+	 * Returns the current state of the Matches in the system
 	 * 
-	 * @return the matchs in the system
+	 * @return the matches in the system
 	 */
-	public Map<String, Match> getSummary() {
-		
-		return null;
-	}
+	Map<String, Match> getSummary();
+
 }

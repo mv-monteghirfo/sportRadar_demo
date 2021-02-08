@@ -1,0 +1,11 @@
+#####################################
+Comments
+
+1 - A Singleton pattern would be a good option having the understanding 
+of the entity Board as a service. Given the requirement of "simplicity"
+that implementation has been left and leave the library able to have 
+different boards 
+2 - An interface has been created for the sake of the design, but for
+the simplicity required, the Board should be left like it is and, if it
+has to grow in the future or have interfaces to be segregated it would 
+be easy to refactor it following the Interface Segregation principle.
