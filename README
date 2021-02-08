@@ -1,0 +1,20 @@
+#####################################
+Comments
+#####################################
+
+1 - A Singleton pattern would be a good option having the understanding 
+of the entity Board as a service. Given the requirement of "simplicity"
+that implementation has been left and leave the library able to have 
+different boards 
+2 - An interface has been created for the sake of the design, but for
+the simplicity required, the Board should be left like it is and, if it
+has to grow in the future or have interfaces to be segregated it would 
+be easy to refactor it following the Interface Segregation principle.
+3 - An ADT would have been used for the collection to hide the data layer
+and expose only the operations needed. Again, for the simplicity requirements
+a Map has been used rawly.
+4 - For the same reason only the "happy path" of the control flow has been tested.
+without having instructions of the use cases that can occur, uses like trying to
+create the same match twice, eliminate a match already eliminated, etc. have been
+left, because the requirements may state to treat them as special exceptions,
+void behavior, etc.
